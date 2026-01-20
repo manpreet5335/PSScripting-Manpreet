@@ -1,0 +1,41 @@
+#Using the pipeline
+Get-Process | Sort-Object Id
+
+Get-Process notepad
+Get-Process notepad | stop-process
+
+Get-Command | Get-Help
+
+
+Get-Service -Name BITS | restart-service
+
+BITS (Background Intelligent Transfer Service) It is essential for background downloads and 
+uploads and can be scheduled to work on idle time. It can be used to sync OneDrive and Microsoft defender
+
+Get-Process | Stop-Process -WhatIf
+PowerShell prints a simulation of the actions instead of executing it
+It prevents accidental deletion or modification. It lets you validate the logic before running a risky script.
+It helps you understand how cmdlets work.
+
+*Foreach Loop
+A foreachloop goes through the list of objects and performs the same action for every object in an array.It will iterate over the list.
+There are multiple ways of using this loop
+1. foreach statement
+2. Foreach-Object cmdlet
+3. Foreach() method
+
+Get-Process | Foreach-Object{$PSItem}
+$PSItem automatic variable that suggest the current object in pipline. Similar to $_
+
+Get-Process | Format-List
+Get-Process | Format-Table
+Get-Process | Sort-Object cpu
+Get-Process | Select-Object Name, CPU
+Get-Process | Where-Object {$_.CPU -gt 15}
+
+Get-ChildItem $HOME -recurse | Where-Object { $_.length -gt 5MB} | Measure-Object
+-recurse means keep going to subfolders until all of them are considered
+
+
+
+
